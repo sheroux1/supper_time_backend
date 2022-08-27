@@ -60,7 +60,7 @@ class Recipe(db.Model):
         self.api_id = api_id
         self.user_token = user_token
     
-    def __repr__(self_):
+    def __repr__(self):
         return f'The following recipe has been added to your cookbook: {self.recipe_name}'
     
     def set_id(self):
