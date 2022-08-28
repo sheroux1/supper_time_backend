@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="bg-dark text-light text-center shadow">
+    <div class="container p-5 bg-dark">
+        <div class="row">
+            <div class="d-md-flex bg-dark align-items-center justify-content-evenly">
+                <h1 class="col text-center"><br>Your Recipe Book</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="text-center">
+    <div class="container p-10">
+        <div class="row"><br>
+            <a href='recipe_card'><button class="btn btn-primary btn-block mt-2">Another Random Recipe</button></a>
+            <ul class="list-group" id="RecipeDiv">
+                    {% block javascript %}
+                    <script src="/static/script.js">
+                    </script>
+                    {% endblock %}  
+            </ul>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-4"></div>
+            <div class="col-3 p-10">
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+    </section>
+
+{% endblock %} 
+              <li class="list-group-item"></li>
+                <li class="list-group-item"></li> 

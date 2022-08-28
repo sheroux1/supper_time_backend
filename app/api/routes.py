@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, render_template
+from flask import Blueprint, request, jsonify, render_template,  redirect, url_for, flash
 from helpers import token_required
 from models import db, User, Recipe, recipe_schema, recipes_schema
 
@@ -20,6 +20,21 @@ def store_recipe(current_user_token):
 
     response = recipe_schema.dump(recipe)
     return jsonify(response)
+
+@api.route('/addrecipe/<id>', methods=['GET', 'POST'])
+@token_required
+def addrecipe(id, current_user_token):
+    recipe_name = "Not sure how to get a hold of this data yet."
+    api_id  = id
+    user_token = current_user_token.token
+    recipe = Recipe(recipe_name, api_id, user_token=user_token)
+    flash(recipe)
+    db.session.add(recipe)
+    db.session.commit()
+
+    response = recipe_schema.dump(recipe)
+    return jsonify(response)
+    # return redirect(url_for('site.recipe_card'))
 
 @api.route('/recipes', methods= ['GET'])
 @token_required
@@ -56,3 +71,4 @@ def delete_recipe(current_user_token, id):
     db.session.commit()
     response = recipe_schema.dump(recipe)
     return jsonify(response)
+
