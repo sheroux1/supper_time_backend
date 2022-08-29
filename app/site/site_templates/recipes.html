@@ -17,15 +17,9 @@
             <div class="d-flex align-items-center justify-content-center">
 
                 {% if current_user.is_authenticated %}
-                <h1>Your Recipes:</h1>
-                <br><br>
-
 
                 {% include 'recipe_table.html' %}
                 {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
+
 
 {% endblock %}

@@ -11,8 +11,17 @@
             {{ form.password.label }}
             {{ form.password(class = "form-control", placeholder = "Place password here ") }}
         </fieldset>
+        {% if signup %}
+        <fieldset id="first-field">
+            {{ form.first_name.label }}
+            {{ form.first_name(class = "form-control", placeholder = "First Name") }}
+        </fieldset>        
+        <fieldset id="last-field">
+            {{ form.last_name.label }}
+            {{ form.last_name(class = "form-control", placeholder = "Last Name") }}
+        </fieldset>        
+        {% endif %}
 
-        <!-- Submit button area -->
         {{ form.submit_button(class = "btn btn-primary btn-block mt-2")}}
 
 </form>

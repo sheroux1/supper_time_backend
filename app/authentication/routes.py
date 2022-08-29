@@ -1,4 +1,4 @@
-from forms import UserLoginForm
+from forms import UserLoginForm, UserSigninForm
 from models import User, db, check_password_hash
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 
@@ -14,9 +14,11 @@ def signup():
         if request.method == 'POST' and form.validate_on_submit():
             email = form.email.data
             password = form.password.data
+            first_name = form.first_name.data
+            last_name = form.last_name.data
             print(email, password)
 
-            user = User(email, password = password)
+            user = User(email, password = password, first_name = first_name, last_name = last_name)
 
             db.session.add(user)
             db.session.commit()
@@ -31,23 +33,29 @@ def signup():
 
 @auth.route('/signin', methods = ['GET', 'POST'])
 def signin():
-    form = UserLoginForm()
-    
+    form = UserSigninForm()
+    print('HIIIIIIIIIIIIIIIIIIIIIIIIIIIILLLLLLLLLLLLLLLLLLLLLLLLLO')
+    print(request.method)
+    print(form.validate_on_submit())
     try:
         if request.method == 'POST' and form.validate_on_submit():
             email = form.email.data
             password = form.password.data
+            print('HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
             print(email,password)
 
             logged_user = User.query.filter(User.email == email).first()
             if logged_user and check_password_hash(logged_user.password, password):
+                print("Is this what's happening??")
                 login_user(logged_user)
                 flash('You have logged in successfully.', 'auth-success')
                 return redirect(url_for('site.profile'))
             else:
+                print('Yoyoyo you cant get in')
                 flash('You do not have access to this content.', 'auth-failed')
                 return redirect(url_for('auth.signin'))
     except:
+        print("Nope, didn't work.")
         raise Exception('Invalid Form Data: Please Check your Form')
     return render_template('sign_in.html', form=form)
 

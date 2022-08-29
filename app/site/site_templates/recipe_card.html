@@ -15,7 +15,9 @@
 <section class="text-center">
     <div class="container p-10">
         <div class="row"><br>
-            <a href='recipe_card'><button class="btn btn-primary btn-block mt-2">Another Random Recipe</button></a>
+            <button class="btn btn-secondary btn-block mt-2" onclick=RandomRecipe(0)>Click for a Random Recipe</button>
+            <!-- <input type="text" id="id" name="id" />
+            <button class="btn btn-secondary btn-block mt-2" onclick=RecipeById(id) type="submit">Click for this specific recipe</button> -->
             <ul class="list-group" id="RecipeDiv">
                     {% block javascript %}
                     <script src="/static/script.js">
